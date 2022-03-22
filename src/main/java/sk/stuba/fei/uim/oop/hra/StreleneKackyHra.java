@@ -82,7 +82,7 @@ public class StreleneKackyHra {
 
     }
     private int kolo(Hrac[] hraci, BalikTahaci balikTahaci, Jazero jazero, int pocetHracov, Kacky balikKaciek){
-        boolean vieZahrat = false;
+        boolean vieZahrat;
         boolean zahralKartu;
         Karta[] balikTahaciTmp = balikTahaci.getBalik();
         Karta[] hracRuka;
@@ -96,6 +96,7 @@ public class StreleneKackyHra {
 
                 zahralKartu = false;
                 //zisti ci vie zahrat
+                vieZahrat = false;
                 hracRuka = hraci[hracNaTahu].getRuka();
                 for (int o = 0; o < 3; o++){
                     if (hracRuka[o].viemZahrat(jazero,balikKaciek)){
@@ -166,6 +167,16 @@ public class StreleneKackyHra {
 
 
             }
+            //kontrola ci uz karty vratil
+            else if (hraci[hracNaTahu].getMaRuku() == 1){
+                hraci[hracNaTahu].setMaRuku(0);
+                //daj karty do kopy
+                BalikFunkcie balikFunkcie = new BalikFunkcie();
+                balikTahaci.setBalik(balikFunkcie.dajNaSpodokNKariet(balikTahaciTmp, hraci[hracNaTahu].getRuka().length, hraci[hracNaTahu].getRuka()));
+
+
+
+            }
             //kontrola vitaza
             int vitaz = skontrolujVitaza(hraci);
             if (vitaz != 0){
@@ -206,10 +217,17 @@ public class StreleneKackyHra {
 
         //vypis karty
         for (int i = 0; i < pocetHracov; i++) {
-            System.out.println("hrac "+(i+1)+" ma kaciek "+hraci[i].getZivot()+" a ma karty:");
-            for (int karta = 0; karta < 3; karta++){
-                System.out.println(hraci[i].ruka[karta].getMeno());
+            if (hraci[i].getZivot() > 0) {
+                System.out.println("hrac " + (i + 1) + " ma kaciek " + hraci[i].getZivot() + " a ma karty:");
+                for (int karta = 0; karta < 3; karta++){
+                    System.out.println(hraci[i].ruka[karta].getMeno());
+                }
             }
+            else{
+                System.out.println("hrac "+(i+1)+" prehral");
+
+            }
+
             System.out.println();
         }
         System.out.println("na tahu je hrac "+(naTahu+1));

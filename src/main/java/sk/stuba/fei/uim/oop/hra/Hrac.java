@@ -8,11 +8,13 @@ public class Hrac {
     int id;
     Karta[] ruka;
     int zivot;
+    int maRuku;
 
     public Hrac(int i) {
         this.id = i;
         this.ruka = new Karta[3];
         this.zivot = 5;
+        this.maRuku = 1;
     }
 
     public void odoberZivot(){
@@ -29,5 +31,13 @@ public class Hrac {
 
     public int getZivot() {
         return zivot;
+    }
+
+    public int getMaRuku() {
+        return maRuku;
+    }
+
+    public void setMaRuku(int maRuku) {
+        this.maRuku = maRuku;
     }
 }
