@@ -12,15 +12,14 @@ import java.awt.*;
 
 public class Vystrel extends Karta{
 
-    String meno;
-    ImageIcon obrazok;
-    Image obrazokImage;
+    private final String meno;
+    private final ImageIcon obrazok;
 
     public Vystrel() {
         this.meno = "Vystrel";
-        obrazok = new ImageIcon("obrazky\\vystrel.png");
-        this.obrazokImage = obrazok.getImage();
-        this.obrazokImage = obrazokImage.getScaledInstance(10*16,10*24,Image.SCALE_DEFAULT);
+        obrazok = new ImageIcon("src/main/java/sk/stuba/fei/uim/oop/obrazky/vystrel.png");
+        Image obrazokImage = obrazok.getImage();
+        obrazokImage = obrazokImage.getScaledInstance(10*16,10*24,Image.SCALE_DEFAULT);
         this.obrazok.setImage(obrazokImage);
     }
 

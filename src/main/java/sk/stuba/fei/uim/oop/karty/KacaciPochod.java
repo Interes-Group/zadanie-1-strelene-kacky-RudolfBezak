@@ -12,18 +12,16 @@ import java.awt.*;
 public class KacaciPochod extends Karta{
 //tato karta sa vzdy da zahrat
 
-    BalikFunkcie balikFunkcie;
-
-    String meno;
-    ImageIcon obrazok;
-    Image obrazokImage;
+    private final BalikFunkcie balikFunkcie;
+    private final String meno;
+    private final ImageIcon obrazok;
 
     public KacaciPochod() {
         balikFunkcie = new BalikFunkcie();
         this.meno = "KacaciPochod";
-        obrazok = new ImageIcon("obrazky\\kacaciPochod.png");
-        this.obrazokImage = obrazok.getImage();
-        this.obrazokImage = obrazokImage.getScaledInstance(10*16,10*24,Image.SCALE_DEFAULT);
+        obrazok = new ImageIcon("src/main/java/sk/stuba/fei/uim/oop/obrazky/kacaciPochod.png");
+        Image obrazokImage = obrazok.getImage();
+        obrazokImage = obrazokImage.getScaledInstance(10*16,10*24,Image.SCALE_DEFAULT);
         this.obrazok.setImage(obrazokImage);
     }
 

@@ -10,5 +10,3 @@ public class Assignment1 {
     }
 }
 
-//kazda karta bude mat svoje idcko, podla ktoreho ju budem zapisovat na ruku hraca
-//karta 0 je prazdne miesto

@@ -5,8 +5,7 @@ import sk.stuba.fei.uim.oop.utility.BalikFunkcie;
 
 public class Kacky {
 
-    int[] balikKaciek;
-    BalikFunkcie balikFunkcie = new BalikFunkcie();
+    private int[] balikKaciek;
 
     //vygeneruj balik kaciek a pomiesaj ho
     public Kacky(int pocetHracov) {
@@ -18,6 +17,7 @@ public class Kacky {
             }
         }
         //shuffle
+        BalikFunkcie balikFunkcie = new BalikFunkcie();
         balikKaciek = balikFunkcie.balikMiesaj(balikKaciek);
     }
 

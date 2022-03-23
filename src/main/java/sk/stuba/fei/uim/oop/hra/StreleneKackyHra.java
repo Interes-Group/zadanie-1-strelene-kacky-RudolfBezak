@@ -6,9 +6,8 @@ import sk.stuba.fei.uim.oop.utility.BalikFunkcie;
 import java.util.concurrent.TimeUnit;
 
 public class StreleneKackyHra {
-    Obraz obraz;
     public StreleneKackyHra() {
-        obraz = new Obraz();
+        Obraz obraz = new Obraz();
 
 
         //priebeh hry
@@ -53,7 +52,7 @@ public class StreleneKackyHra {
         //zacni kolo
         int vitaz = 0;
         while (vitaz == 0){
-            vitaz = kolo(hraci, balikTahaci, jazero, pocetHracov, balikKaciek,obraz);
+            vitaz = kolo(hraci, balikTahaci, jazero, pocetHracov, balikKaciek, obraz);
         }
 
         obraz.setVypis("vitaz je hrac "+vitaz);
@@ -179,7 +178,7 @@ public class StreleneKackyHra {
                 kartaNaSpodok[0] = hracRuka[ktoruKartuZahra];
                 balikTahaciTmp = balikFunkcie.dajNaSpodokNKariet(balikTahaciTmp, 1, kartaNaSpodok);
                 //zahod kartu
-                hracRuka[ktoruKartuZahra] = balikTahaci.balik[0];
+                hracRuka[ktoruKartuZahra] = balikTahaci.getBalik()[0];
                 //uloz ruku
                 hraci[hracNaTahu].setRuka(hracRuka);
                 //vymaz ju z balika tahacieho
@@ -226,7 +225,7 @@ public class StreleneKackyHra {
     }
 
     private void vykresli(Hrac[] hraci, Jazero jazero, Kacky balikKaciek, int pocetHracov,int naTahu,Obraz obraz){
-        int[] zameriavaciTmp = jazero.getZameriavaci();
+        /*int[] zameriavaciTmp = jazero.getZameriavaci();
         int[] jazeroTmp = jazero.getJazero();
 
 
@@ -244,7 +243,7 @@ public class StreleneKackyHra {
             if (hraci[i].getZivot() > 0) {
                 System.out.println("hrac " + (i + 1) + " ma kaciek " + hraci[i].getZivot() + " a ma karty:");
                 for (int karta = 0; karta < 3; karta++){
-                    System.out.println(hraci[i].ruka[karta].getMeno());
+                    System.out.println(hraci[i].getRuka()[karta].getMeno());
                 }
             }
             else{
@@ -254,7 +253,7 @@ public class StreleneKackyHra {
 
             System.out.println();
         }
-        System.out.println("na tahu je hrac "+(naTahu+1));
+        System.out.println("na tahu je hrac "+(naTahu+1));*/
 
         //updatni obraz
         obraz.zmenRuku(hraci[naTahu].getRuka());

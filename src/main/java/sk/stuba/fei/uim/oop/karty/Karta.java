@@ -10,8 +10,8 @@ import javax.swing.*;
 
 public class Karta {
 
-    String meno;
-    ImageIcon obrazok;
+    private String meno;
+    private ImageIcon obrazok;
 
     public Karta() {
     }

@@ -12,15 +12,14 @@ import java.util.concurrent.TimeUnit;
 
 public class ZamierKarta extends Karta {
 
-    String meno;
-    ImageIcon obrazok;
-    Image obrazokImage;
+    private final String meno;
+    private final ImageIcon obrazok;
 
     public ZamierKarta() {
         this.meno = "Zamier";
-        this.obrazok = new ImageIcon("obrazky\\zamier.png");
-        this.obrazokImage = obrazok.getImage();
-        this.obrazokImage = obrazokImage.getScaledInstance(10*16,10*24,Image.SCALE_DEFAULT);
+        this.obrazok = new ImageIcon("src/main/java/sk/stuba/fei/uim/oop/obrazky/zamier.png");
+        Image obrazokImage = obrazok.getImage();
+        obrazokImage = obrazokImage.getScaledInstance(10*16,10*24,Image.SCALE_DEFAULT);
         this.obrazok.setImage(obrazokImage);
     }
 

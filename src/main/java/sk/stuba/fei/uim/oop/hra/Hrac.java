@@ -5,10 +5,10 @@ import sk.stuba.fei.uim.oop.karty.Karta;
 
 public class Hrac {
     //hrac si chrani kacky ktore maju cislo svojho id
-    int id;
-    Karta[] ruka;
-    int zivot;
-    int maRuku;
+    private final int id;
+    private Karta[] ruka;
+    private int zivot;
+    private int maRuku;
 
     public Hrac(int i) {
         this.id = i;

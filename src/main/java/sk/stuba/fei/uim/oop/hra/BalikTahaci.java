@@ -5,15 +5,15 @@ import sk.stuba.fei.uim.oop.utility.BalikFunkcie;
 
 public class BalikTahaci {
     //pocty kariet
-    // 0 zamierKarta = 10; -------------------
+    // 0 zamierKarta = 10;
     // 1 vystrelKarta = 12;
     // 2 divokyBillKarta = 2;
-    // 3 kacaciPochodKarta = 6; --------------
+    // 3 kacaciPochodKarta = 6;
     // 4 turboKackaKarta = 1;
     // 5 rosamboKarta = 2;
     // 6 kacaciTanecKarta = 1;
 
-    Karta[] balik;
+    private Karta[] balik;
 
     //vygeneruj balik
     public BalikTahaci() {

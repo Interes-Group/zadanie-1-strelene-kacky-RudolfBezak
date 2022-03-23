@@ -9,17 +9,17 @@ import sk.stuba.fei.uim.oop.karty.ZamierKarta;
 import javax.swing.*;
 
 public class Obraz {
-    JFrame okno;
-    JButton tlacitko0;
-    JButton tlacitko1;
-    JButton tlacitko2;
-    JLabel[] vypisNaKarty;
-    JLabel[] hraciLabely;
-    String[] farbyHracov;
-    JLabel[] farbyHracovLabel;
-    JLabel hracNaRade;
+    private final JFrame okno;
+    private final JButton tlacitko0;
+    private final JButton tlacitko1;
+    private final JButton tlacitko2;
+    private final JLabel[] vypisNaKarty;
+    private final JLabel[] hraciLabely;
+    private final String[] farbyHracov;
+    private final JLabel[] farbyHracovLabel;
+    private final JLabel hracNaRade;
     int posledneTlacitko;
-    JLabel vypis;
+    private final JLabel vypis;
 
     JButton[] kacice;
 
@@ -39,7 +39,7 @@ public class Obraz {
 
         //nacitaj obrazky
         //kacka0
-        ImageIcon kacka0 = new ImageIcon("obrazky\\kacka0.png");
+        ImageIcon kacka0 = new ImageIcon("src/main/java/sk/stuba/fei/uim/oop/obrazky/kacka0.png");
         Image zamierImage = kacka0.getImage();
         zamierImage = zamierImage.getScaledInstance(10*16,10*24,Image.SCALE_DEFAULT);
         kacka0.setImage(zamierImage);
