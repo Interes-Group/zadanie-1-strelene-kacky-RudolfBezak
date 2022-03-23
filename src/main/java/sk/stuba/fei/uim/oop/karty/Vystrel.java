@@ -3,15 +3,25 @@ package sk.stuba.fei.uim.oop.karty;
 import sk.stuba.fei.uim.oop.hra.Hrac;
 import sk.stuba.fei.uim.oop.hra.Jazero;
 import sk.stuba.fei.uim.oop.hra.Kacky;
+import sk.stuba.fei.uim.oop.hra.Obraz;
 import sk.stuba.fei.uim.oop.utility.BalikFunkcie;
 import sk.stuba.fei.uim.oop.utility.ZKlavesnice;
+
+import javax.swing.*;
+import java.awt.*;
 
 public class Vystrel extends Karta{
 
     String meno;
+    ImageIcon obrazok;
+    Image obrazokImage;
 
     public Vystrel() {
         this.meno = "Vystrel";
+        obrazok = new ImageIcon("obrazky\\vystrel.png");
+        this.obrazokImage = obrazok.getImage();
+        this.obrazokImage = obrazokImage.getScaledInstance(10*16,10*24,Image.SCALE_DEFAULT);
+        this.obrazok.setImage(obrazokImage);
     }
 
     @Override
@@ -35,7 +45,7 @@ public class Vystrel extends Karta{
 
     //zastrel kacku
     @Override
-    public boolean zahrajKartu(Jazero jazero, Kacky balikKaciek, Hrac[] hrac){
+    public boolean zahrajKartu(Jazero jazero, Kacky balikKaciek, Hrac[] hrac, Obraz obraz){
         if (!(viemZahrat(jazero, balikKaciek))){
             System.out.println("tato karta sa neda zahrat :(");
             return false;
@@ -46,9 +56,12 @@ public class Vystrel extends Karta{
         boolean strielamZameriavac = false;
         //prekopiruj si zameriavacov
         int[] zameriavaciTmp = jazero.getZameriavaci();
+        obraz.setVypis("ktory zameriavac streli?");
         while (!strielamZameriavac){
-            miestoStrelby = ZKlavesnice.readInt("ktory zameriavac streli? (0-5)");
-            if (miestoStrelby < 6 && miestoStrelby > -1){
+            miestoStrelby = obraz.getPosledneTlacitko();
+
+            if (miestoStrelby < 7 && miestoStrelby > 0){
+                miestoStrelby--;
                 //pozri ci tam je zameriavac
                 if (zameriavaciTmp[miestoStrelby] == 1){
                     zastrelKacku(jazero, balikKaciek, miestoStrelby,hrac);
@@ -56,14 +69,18 @@ public class Vystrel extends Karta{
                 }
                 else{
                     //neni tam zameriavac
-                    System.out.println("neni tam zameriavac");
+                    //System.out.println("neni tam zameriavac");
+                    obraz.setVypis("neni tam zameriavac");
                 }
             }
             else{
                 //musi byt od 0 do 5
-                System.out.println("cislo musi byt od 0 do 5");
+                //System.out.println("cislo musi byt od 0 do 5");
+                obraz.setVypis("musis kliknut na jazero");
             }
         }
+        obraz.setVypis("");
+        obraz.setPosledneTlacitko(0);
 
 
 
@@ -109,5 +126,8 @@ public class Vystrel extends Karta{
 
 
 
+    }
+    public ImageIcon getObrazok() {
+        return obrazok;
     }
 }

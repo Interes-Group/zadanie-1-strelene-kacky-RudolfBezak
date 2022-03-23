@@ -2,7 +2,11 @@ package sk.stuba.fei.uim.oop.karty;
 import sk.stuba.fei.uim.oop.hra.Hrac;
 import sk.stuba.fei.uim.oop.hra.Jazero;
 import sk.stuba.fei.uim.oop.hra.Kacky;
+import sk.stuba.fei.uim.oop.hra.Obraz;
 import sk.stuba.fei.uim.oop.utility.BalikFunkcie;
+
+import javax.swing.*;
+import java.awt.*;
 
 
 public class KacaciPochod extends Karta{
@@ -11,11 +15,16 @@ public class KacaciPochod extends Karta{
     BalikFunkcie balikFunkcie;
 
     String meno;
-
+    ImageIcon obrazok;
+    Image obrazokImage;
 
     public KacaciPochod() {
         balikFunkcie = new BalikFunkcie();
-        meno = "KacaciPochod";
+        this.meno = "KacaciPochod";
+        obrazok = new ImageIcon("obrazky\\kacaciPochod.png");
+        this.obrazokImage = obrazok.getImage();
+        this.obrazokImage = obrazokImage.getScaledInstance(10*16,10*24,Image.SCALE_DEFAULT);
+        this.obrazok.setImage(obrazokImage);
     }
 
     @Override
@@ -25,7 +34,7 @@ public class KacaciPochod extends Karta{
 
     //zahraj kacaci pochod
     @Override
-    public boolean zahrajKartu(Jazero jazero, Kacky balikKaciek, Hrac[] hrac){
+    public boolean zahrajKartu(Jazero jazero, Kacky balikKaciek, Hrac[] hrac, Obraz obraz){
         //potiahni si vrchnu kartu
         int[] balikKaciekTmp = balikKaciek.getBalikKaciek();
         int vrchnaKackaZBaliku = balikKaciekTmp[0];
@@ -52,5 +61,9 @@ public class KacaciPochod extends Karta{
         jazero.setJazero(jazeroTmp);
         balikKaciek.setBalikKaciek(balikKaciekTmp);
         return true;
+    }
+
+    public ImageIcon getObrazok() {
+        return obrazok;
     }
 }
