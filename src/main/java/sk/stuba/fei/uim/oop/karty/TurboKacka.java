@@ -80,7 +80,6 @@ public class TurboKacka extends Karta{
                 obraz.setVypis("musis kliknut na jazero");
             }
         }
-        obraz.setPosledneTlacitko(0);
         obraz.setVypis("");
         //mas dobre cislo
         //posun kacky

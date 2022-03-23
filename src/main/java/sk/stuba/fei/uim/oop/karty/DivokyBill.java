@@ -61,7 +61,6 @@ public class DivokyBill extends Karta {
             }
         }
         obraz.setVypis("");
-        obraz.setPosledneTlacitko(0);
 
         return true;
     }

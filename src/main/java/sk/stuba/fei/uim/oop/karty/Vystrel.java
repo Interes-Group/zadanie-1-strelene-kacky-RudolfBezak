@@ -79,7 +79,6 @@ public class Vystrel extends Karta{
             }
         }
         obraz.setVypis("");
-        obraz.setPosledneTlacitko(0);
 
 
 

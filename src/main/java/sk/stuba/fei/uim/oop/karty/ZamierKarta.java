@@ -4,7 +4,6 @@ import sk.stuba.fei.uim.oop.hra.Hrac;
 import sk.stuba.fei.uim.oop.hra.Jazero;
 import sk.stuba.fei.uim.oop.hra.Kacky;
 import sk.stuba.fei.uim.oop.hra.Obraz;
-import sk.stuba.fei.uim.oop.utility.ZKlavesnice;
 
 import javax.swing.*;
 import java.awt.*;
@@ -90,7 +89,6 @@ public class ZamierKarta extends Karta {
             }
         }
         obraz.setVypis("");
-        obraz.setPosledneTlacitko(0);
     }
     public ImageIcon getObrazok() {
         return obrazok;

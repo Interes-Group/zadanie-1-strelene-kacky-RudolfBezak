@@ -15,6 +15,7 @@ public class StreleneKackyHra {
         //zisti kolko hracov
         int pocetHracov = 0;
         while (!(pocetHracov > 1 && pocetHracov < 7)) {
+            //bez sleepu mi to nechcelo brat tie tlacitka
             try {
                 TimeUnit.MILLISECONDS.sleep(100);
             } catch (InterruptedException e) {
@@ -23,7 +24,6 @@ public class StreleneKackyHra {
             pocetHracov = obraz.getPosledneTlacitko();
 
         }
-        obraz.setPosledneTlacitko(0);
         obraz.deleteLabely();
 
 
@@ -117,7 +117,6 @@ public class StreleneKackyHra {
                             if (ktoruKartuZahra > 6 && ktoruKartuZahra < 10){
                                 jeOdJednaPoDva = true;
                                 ktoruKartuZahra -= 7;
-                                obraz.setPosledneTlacitko(0);
                             }
                         }
                         obraz.setVypis("");
@@ -140,7 +139,6 @@ public class StreleneKackyHra {
                                     ktoruKartuZahra -= 7;
                                 }
                             }
-                            obraz.setPosledneTlacitko(0);
                             obraz.setVypis("");
 
                         }
@@ -165,7 +163,6 @@ public class StreleneKackyHra {
                             ktoruKartuZahra -= 7;
                         }
                     }
-                    obraz.setPosledneTlacitko(0);
                     obraz.setVypis("");
 
 

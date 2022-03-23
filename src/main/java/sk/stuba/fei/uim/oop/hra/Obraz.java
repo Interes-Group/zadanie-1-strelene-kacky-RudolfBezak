@@ -1,14 +1,13 @@
 package sk.stuba.fei.uim.oop.hra;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+
 
 import sk.stuba.fei.uim.oop.karty.Karta;
-import sk.stuba.fei.uim.oop.karty.ZamierKarta;
+
 
 import javax.swing.*;
 
-public class Obraz {
+public class Obraz extends JPanel {
     private final JFrame okno;
     private final JButton tlacitko0;
     private final JButton tlacitko1;
@@ -20,11 +19,16 @@ public class Obraz {
     private final JLabel hracNaRade;
     int posledneTlacitko;
     private final JLabel vypis;
+    private final Kliknutia[] akcnePocuvace;
 
     JButton[] kacice;
 
 
     public Obraz() {
+        akcnePocuvace = new Kliknutia[9];
+        for (int i = 0; i < 9; i++){
+            akcnePocuvace[i] = new Kliknutia(i+1);
+        }
         //vykreslovanie
         okno = new JFrame();
         okno.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -51,19 +55,19 @@ public class Obraz {
         tlacitko0.setBounds(350,430,10*16,10*24);
         okno.add(tlacitko0);
         tlacitko0.setIcon(kacka0);
-        tlacitko0.addActionListener(e -> posledneTlacitko = 7);
+        tlacitko0.addActionListener(akcnePocuvace[6]);
 
         tlacitko1 = new JButton();
         tlacitko1.setBounds(550,430,10*16,10*24);
         okno.add(tlacitko1);
         tlacitko1.setIcon(kacka0);
-        tlacitko1.addActionListener(e -> posledneTlacitko = 8);
+        tlacitko1.addActionListener(akcnePocuvace[7]);
 
         tlacitko2 = new JButton();
         tlacitko2.setBounds(750,430,10*16,10*24);
         okno.add(tlacitko2);
         tlacitko2.setIcon(kacka0);
-        tlacitko2.addActionListener(e -> posledneTlacitko = 9);
+        tlacitko2.addActionListener(akcnePocuvace[8]);
 
         //hod tam 6 miest na kacice
         kacice = new JButton[6];
@@ -73,17 +77,9 @@ public class Obraz {
             okno.add(kacice[i]);
         }
         //pridaj actionlistenery
-        kacice[0].addActionListener(e -> posledneTlacitko = 1);
-        //pridaj actionlistenery
-        kacice[1].addActionListener(e -> posledneTlacitko = 2);
-        //pridaj actionlistenery
-        kacice[2].addActionListener(e -> posledneTlacitko = 3);
-        //pridaj actionlistenery
-        kacice[3].addActionListener(e -> posledneTlacitko = 4);
-        //pridaj actionlistenery
-        kacice[4].addActionListener(e -> posledneTlacitko = 5);
-        //pridaj actionlistenery
-        kacice[5].addActionListener(e -> posledneTlacitko = 6);
+        for (int i = 0; i < kacice.length;i++) {
+            kacice[i].addActionListener(akcnePocuvace[i]);
+        }
 
 
         //hod tam miesto na vypis
@@ -172,16 +168,20 @@ public class Obraz {
         this.hracNaRade.setText("Na rade je hrac "+hrac.getId());
     }
 
-    public int getPosledneTlacitko() {
-        return posledneTlacitko;
-    }
-
-    public void setPosledneTlacitko(int posledneTlacitko) {
-        this.posledneTlacitko = posledneTlacitko;
-    }
 
     public void setVypis(String string){
         vypis.setText(string);
+    }
+
+    public int getPosledneTlacitko(){
+        int zakliknute = 0;
+        for (Kliknutia kliknutia : this.akcnePocuvace) {
+            if (kliknutia.posledneKliknute) {
+                zakliknute = kliknutia.klik;
+                kliknutia.reSet();
+            }
+        }
+        return zakliknute;
     }
 }
 
