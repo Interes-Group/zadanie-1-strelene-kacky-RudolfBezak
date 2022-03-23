@@ -3,14 +3,25 @@ package sk.stuba.fei.uim.oop.karty;
 import sk.stuba.fei.uim.oop.hra.Hrac;
 import sk.stuba.fei.uim.oop.hra.Jazero;
 import sk.stuba.fei.uim.oop.hra.Kacky;
+import sk.stuba.fei.uim.oop.hra.Obraz;
 import sk.stuba.fei.uim.oop.utility.ZKlavesnice;
+
+import javax.swing.*;
+import java.awt.*;
+import java.util.concurrent.TimeUnit;
 
 public class TurboKacka extends Karta{
 
     String meno;
+    ImageIcon obrazok;
+    Image obrazokImage;
 
     public TurboKacka() {
         this.meno="Turbokacka";
+        obrazok = new ImageIcon("obrazky\\turboKacka.png");
+        this.obrazokImage = obrazok.getImage();
+        this.obrazokImage = obrazokImage.getScaledInstance(10*16,10*24,Image.SCALE_DEFAULT);
+        this.obrazok.setImage(obrazokImage);
     }
 
     @Override
@@ -33,7 +44,7 @@ public class TurboKacka extends Karta{
     }
 
     @Override
-    public boolean zahrajKartu(Jazero jazero, Kacky balikKaciek, Hrac[] hrac){
+    public boolean zahrajKartu(Jazero jazero, Kacky balikKaciek, Hrac[] hrac, Obraz obraz){
         //zisti ci viem zahrat
         if (!this.viemZahrat(jazero, balikKaciek)){
             System.out.println("tuto kartu neviem zahrat :(");
@@ -46,21 +57,32 @@ public class TurboKacka extends Karta{
         int[] jazeroTmp = jazero.getJazero();
 
         //opytaj sa na cislo
+        obraz.setVypis("ktora kacka je turbo?");
         while (!ukazujemNaKacku){
-            indexKamUkazujem = ZKlavesnice.readInt("ktora kacka je turbo? (0-5)");
+            indexKamUkazujem = obraz.getPosledneTlacitko();
+            try {
+                TimeUnit.MILLISECONDS.sleep(100);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
             //zisti ci je dobre cislo
-            if (indexKamUkazujem > -1 && indexKamUkazujem < 6){
+            if (indexKamUkazujem > 0 && indexKamUkazujem < 7){
+                indexKamUkazujem--;
                 if (jazeroTmp[indexKamUkazujem] != 0){
                     ukazujemNaKacku = true;
                 }
                 else{
-                    System.out.println("vodu neposunies");
+                    obraz.setVypis("vodu neposunes");
+                    //System.out.println("vodu neposunies");
                 }
             }
             else{
-                System.out.println("musi to but cislo od 0 do 5");
+                //System.out.println("musi to but cislo od 0 do 5");
+                obraz.setVypis("musis kliknut na jazero");
             }
         }
+        obraz.setPosledneTlacitko(0);
+        obraz.setVypis("");
         //mas dobre cislo
         //posun kacky
         int tmp;
@@ -71,5 +93,8 @@ public class TurboKacka extends Karta{
             jazeroTmp[i-1] = tmp;
         }
         return true;
+    }
+    public ImageIcon getObrazok() {
+        return obrazok;
     }
 }

@@ -3,14 +3,24 @@ package sk.stuba.fei.uim.oop.karty;
 import sk.stuba.fei.uim.oop.hra.Hrac;
 import sk.stuba.fei.uim.oop.hra.Jazero;
 import sk.stuba.fei.uim.oop.hra.Kacky;
+import sk.stuba.fei.uim.oop.hra.Obraz;
 import sk.stuba.fei.uim.oop.utility.BalikFunkcie;
+
+import javax.swing.*;
+import java.awt.*;
 
 public class KacaciTanec extends Karta{
 
     String meno;
+    ImageIcon obrazok;
+    Image obrazokImage;
 
     public KacaciTanec() {
         this.meno = "KacaciTanec";
+        obrazok = new ImageIcon("obrazky\\kacaciTanec.png");
+        this.obrazokImage = obrazok.getImage();
+        this.obrazokImage = obrazokImage.getScaledInstance(10*16,10*24,Image.SCALE_DEFAULT);
+        this.obrazok.setImage(obrazokImage);
     }
 
     @Override
@@ -19,7 +29,7 @@ public class KacaciTanec extends Karta{
     }
 
     @Override
-    public boolean zahrajKartu(Jazero jazero, Kacky balikKaciek, Hrac[] hrac){
+    public boolean zahrajKartu(Jazero jazero, Kacky balikKaciek, Hrac[] hrac, Obraz obraz){
         //inicializuj balikfunkcie triedu
         BalikFunkcie balikFunkcie = new BalikFunkcie();
 
@@ -41,5 +51,8 @@ public class KacaciTanec extends Karta{
         balikKaciek.setBalikKaciek(balikKaciekTmp);
 
         return true;
+    }
+    public ImageIcon getObrazok() {
+        return obrazok;
     }
 }

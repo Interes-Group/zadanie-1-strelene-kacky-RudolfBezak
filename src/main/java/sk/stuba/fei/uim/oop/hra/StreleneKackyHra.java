@@ -2,17 +2,32 @@ package sk.stuba.fei.uim.oop.hra;
 
 import sk.stuba.fei.uim.oop.karty.*;
 import sk.stuba.fei.uim.oop.utility.BalikFunkcie;
-import sk.stuba.fei.uim.oop.utility.ZKlavesnice;
+
+import java.util.concurrent.TimeUnit;
 
 public class StreleneKackyHra {
+    Obraz obraz;
     public StreleneKackyHra() {
+        obraz = new Obraz();
+
+
         //priebeh hry
 
         //zisti kolko hracov
         int pocetHracov = 0;
         while (!(pocetHracov > 1 && pocetHracov < 7)) {
-            pocetHracov = ZKlavesnice.readInt("kolko hracov? (2-6)");
+            try {
+                TimeUnit.MILLISECONDS.sleep(100);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+            pocetHracov = obraz.getPosledneTlacitko();
+
         }
+        obraz.setPosledneTlacitko(0);
+        obraz.deleteLabely();
+
+
         //vytor balik kaciek
         Kacky balikKaciek = new Kacky(pocetHracov);
 
@@ -25,32 +40,12 @@ public class StreleneKackyHra {
         //vytvor hracov / nastav im id
         for (int i = 0; i < pocetHracov; i++){
             hraci[i] = new Hrac(i+1);
+
         }
+        obraz.legendaFariebZivot(hraci,pocetHracov);
 
         //vytvor balicek kariet
         BalikTahaci balikTahaci = new BalikTahaci();
-
-        //test kariet
-        /*Karta kacacipochod = new KacaciPochod();
-        kacacipochod.zahrajKartu(jazero, balikKaciek);
-
-        Karta zamierKarta = new ZamierKarta();
-        zamierKarta.zahrajKartu(jazero, balikKaciek);
-
-        Karta vystrel = new Vystrel();
-        vystrel.zahrajKartu(jazero, balikKaciek);
-
-        Karta divokyBill = new DivokyBill();
-        divokyBill.zahrajKartu(jazero, balikKaciek);
-
-        Karta kacaciTanec = new KacaciTanec();
-        kacaciTanec.zahrajKartu(jazero,balikKaciek);
-
-        Karta rosambo = new Rosambo();
-        rosambo.zahrajKartu(jazero,balikKaciek);
-
-        Karta turboKacka = new TurboKacka();
-        turboKacka.zahrajKartu(jazero,balikKaciek);*/
 
         //daj karty hracom
         this.rozdajRuky(hraci,balikTahaci,pocetHracov);
@@ -58,12 +53,11 @@ public class StreleneKackyHra {
         //zacni kolo
         int vitaz = 0;
         while (vitaz == 0){
-            vitaz = kolo(hraci, balikTahaci, jazero, pocetHracov, balikKaciek);
+            vitaz = kolo(hraci, balikTahaci, jazero, pocetHracov, balikKaciek,obraz);
         }
+
+        obraz.setVypis("vitaz je hrac "+vitaz);
         System.out.println("Vyhral hrac "+vitaz);
-
-
-
 
     }
 
@@ -81,7 +75,7 @@ public class StreleneKackyHra {
         balikTahaci.setBalik(balikTahaciTmp);
 
     }
-    private int kolo(Hrac[] hraci, BalikTahaci balikTahaci, Jazero jazero, int pocetHracov, Kacky balikKaciek){
+    private int kolo(Hrac[] hraci, BalikTahaci balikTahaci, Jazero jazero, int pocetHracov, Kacky balikKaciek,Obraz obraz){
         boolean vieZahrat;
         boolean zahralKartu;
         Karta[] balikTahaciTmp = balikTahaci.getBalik();
@@ -92,7 +86,8 @@ public class StreleneKackyHra {
             //hrac bez zivota nevie hrat
             if (hraci[hracNaTahu].getZivot() > 0){
                 //nakresli dosku
-                vykresli(hraci,jazero,balikKaciek,pocetHracov,hracNaTahu);
+                vykresli(hraci,jazero,balikKaciek,pocetHracov,hracNaTahu,obraz);
+
 
                 zahralKartu = false;
                 //zisti ci vie zahrat
@@ -111,25 +106,43 @@ public class StreleneKackyHra {
                     //vie zahrat
                     while (!zahralKartu){
 
+                        obraz.setVypis("Ktoru kartu zahras?");
                         while (!jeOdJednaPoDva) {
-                            ktoruKartuZahra = ZKlavesnice.readInt("ktoru kartu zahras? (0-2)");
+                            ktoruKartuZahra = obraz.getPosledneTlacitko();
+                            try {
+                                TimeUnit.MILLISECONDS.sleep(100);
+                            } catch (InterruptedException e) {
+                                e.printStackTrace();
+                            }
                             //zisti ci je od 0-2
-                            if (ktoruKartuZahra > -1 && ktoruKartuZahra < 3){
+                            if (ktoruKartuZahra > 6 && ktoruKartuZahra < 10){
                                 jeOdJednaPoDva = true;
+                                ktoruKartuZahra -= 7;
+                                obraz.setPosledneTlacitko(0);
                             }
                         }
-                        if (hracRuka[ktoruKartuZahra].zahrajKartu(jazero,balikKaciek,hraci)){
+                        obraz.setVypis("");
+                        if (hracRuka[ktoruKartuZahra].zahrajKartu(jazero,balikKaciek,hraci,obraz)){
                             //podarilo sa zahrat
                             zahralKartu = true;
                         }
                         else{
                             jeOdJednaPoDva = false;
+                            obraz.setVypis("vyber inu");
                             while (!jeOdJednaPoDva) {
-                                ktoruKartuZahra = ZKlavesnice.readInt("vyber inu? (0-2)");
-                                if (ktoruKartuZahra > -1 && ktoruKartuZahra < 3){
+                                ktoruKartuZahra = obraz.getPosledneTlacitko();
+                                try {
+                                    TimeUnit.MILLISECONDS.sleep(100);
+                                } catch (InterruptedException e) {
+                                    e.printStackTrace();
+                                }
+                                if (ktoruKartuZahra > 6 && ktoruKartuZahra < 10){
                                     jeOdJednaPoDva = true;
+                                    ktoruKartuZahra -= 7;
                                 }
                             }
+                            obraz.setPosledneTlacitko(0);
+                            obraz.setVypis("");
 
                         }
                     }
@@ -139,13 +152,22 @@ public class StreleneKackyHra {
                     //nevie zahrat - musi odhodit
 
                     //zisti kartu
+                    obraz.setVypis("zahod kartu");
                     while(!jeOdJednaPoDva){
-                        ktoruKartuZahra = ZKlavesnice.readInt("ktoru kartu zahodis? (0-2)");
+                        ktoruKartuZahra = obraz.getPosledneTlacitko();
+                        try {
+                            TimeUnit.MILLISECONDS.sleep(100);
+                        } catch (InterruptedException e) {
+                            e.printStackTrace();
+                        }
                         //zisti ci je od 0-2
-                        if (ktoruKartuZahra > -1 && ktoruKartuZahra < 3){
+                        if (ktoruKartuZahra > 6 && ktoruKartuZahra < 10){
                             jeOdJednaPoDva = true;
+                            ktoruKartuZahra -= 7;
                         }
                     }
+                    obraz.setPosledneTlacitko(0);
+                    obraz.setVypis("");
 
 
                 }
@@ -203,9 +225,11 @@ public class StreleneKackyHra {
         return 0;
     }
 
-    private void vykresli(Hrac[] hraci, Jazero jazero, Kacky balikKaciek, int pocetHracov,int naTahu){
+    private void vykresli(Hrac[] hraci, Jazero jazero, Kacky balikKaciek, int pocetHracov,int naTahu,Obraz obraz){
         int[] zameriavaciTmp = jazero.getZameriavaci();
         int[] jazeroTmp = jazero.getJazero();
+
+
         System.out.println("suradnice   0 1 2 3 4 5");
         System.out.println("zameriavaci "+zameriavaciTmp[0]+" "+zameriavaciTmp[1]+" "+zameriavaciTmp[2]+" "+zameriavaciTmp[3]+" "+zameriavaciTmp[4]+" "+zameriavaciTmp[5]);
         System.out.println("mieritká    | | | | | |");
@@ -231,5 +255,11 @@ public class StreleneKackyHra {
             System.out.println();
         }
         System.out.println("na tahu je hrac "+(naTahu+1));
+
+        //updatni obraz
+        obraz.zmenRuku(hraci[naTahu].getRuka());
+        obraz.zmenJazero(jazero);
+        obraz.legendaFariebZivot(hraci,pocetHracov);
+        obraz.napisHraca(hraci[naTahu]);
     }
 }

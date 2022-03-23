@@ -40,4 +40,8 @@ public class Hrac {
     public void setMaRuku(int maRuku) {
         this.maRuku = maRuku;
     }
+
+    public int getId() {
+        return id;
+    }
 }

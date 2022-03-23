@@ -3,13 +3,26 @@ package sk.stuba.fei.uim.oop.karty;
 import sk.stuba.fei.uim.oop.hra.Hrac;
 import sk.stuba.fei.uim.oop.hra.Jazero;
 import sk.stuba.fei.uim.oop.hra.Kacky;
+import sk.stuba.fei.uim.oop.hra.Obraz;
 import sk.stuba.fei.uim.oop.utility.ZKlavesnice;
+
+import javax.swing.*;
+import java.awt.*;
+import java.util.concurrent.TimeUnit;
 
 public class DivokyBill extends Karta {
 
+    ImageIcon obrazok;
     String meno;
+    Image obrazokImage;
+
+
     public DivokyBill() {
-        meno = "DivokyBill";
+        this.meno = "DivokyBill";
+        obrazok = new ImageIcon("obrazky\\divokyBill.png");
+        this.obrazokImage = obrazok.getImage();
+        this.obrazokImage = obrazokImage.getScaledInstance(10*16,10*24,Image.SCALE_DEFAULT);
+        this.obrazok.setImage(obrazokImage);
     }
 
     @Override
@@ -17,14 +30,21 @@ public class DivokyBill extends Karta {
         return meno;
     }
 
-    public boolean zahrajKartu(Jazero jazero, Kacky balikKaciek, Hrac[] hrac){
+    public boolean zahrajKartu(Jazero jazero, Kacky balikKaciek, Hrac[] hrac, Obraz obraz){
         boolean zahrana = false;
         int miestoStrelby;
         //vypitaj si cislo od 0 do 5
+        obraz.setVypis("kam streli divoky Bill?");
         while(!zahrana){
-            miestoStrelby = ZKlavesnice.readInt("kam streli divoky Bill? (0-5)");
-            if (miestoStrelby < 6 && miestoStrelby > -1){
+            miestoStrelby = obraz.getPosledneTlacitko();
+            try {
+                TimeUnit.MILLISECONDS.sleep(100);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+            if (miestoStrelby < 7 && miestoStrelby > 0){
                 //zaspis ze sme ju zahrali
+                miestoStrelby--;
                 zahrana = true;
 
                 //daj tam zameriavaca
@@ -37,10 +57,17 @@ public class DivokyBill extends Karta {
 
             }
             else {
-                System.out.println("musi to byt cislo od 0 do 5");
+                obraz.setVypis("musi strelit na jazero");
+                //System.out.println("musi to byt cislo od 0 do 5");
             }
         }
+        obraz.setVypis("");
+        obraz.setPosledneTlacitko(0);
 
         return true;
+    }
+
+    public ImageIcon getObrazok() {
+        return obrazok;
     }
 }
