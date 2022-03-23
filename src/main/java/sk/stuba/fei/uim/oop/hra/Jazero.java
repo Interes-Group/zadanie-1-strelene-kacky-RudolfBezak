@@ -6,17 +6,15 @@ import javax.swing.*;
 import java.awt.*;
 
 public class Jazero {
-    int[] jazero;
-    int velkostJazera;
-    int[] zameriavaci;
-    BalikFunkcie balikFunkcie;
-    ImageIcon[] obrazokKaciek;
+    private int[] jazero;
+    private int[] zameriavaci;
+    private final ImageIcon[] obrazokKaciek;
 
 
     //vygeneruj jazero a odober tie karty z balika kaciek
     public Jazero(Kacky kacky) {
-        balikFunkcie = new BalikFunkcie();
-        velkostJazera = 6;
+        BalikFunkcie balikFunkcie = new BalikFunkcie();
+        int velkostJazera = 6;
         jazero = new int[velkostJazera];
         zameriavaci = new int[velkostJazera];
         //nastav zameriavacov na 0
@@ -27,27 +25,28 @@ public class Jazero {
 
 
         //prekopiruj vrchnych 6 kariet z baliku kaciek na jazero
-        System.arraycopy(kacky.balikKaciek, 0, jazero, 0, velkostJazera);
+        int[] balikKaciekTmp = kacky.getBalikKaciek();
+        System.arraycopy(balikKaciekTmp, 0, jazero, 0, velkostJazera);
         //vymaz vrchnych 6 kariet z balika
-        kacky.balikKaciek = balikFunkcie.balikVymazVrchnychN(kacky.balikKaciek, velkostJazera);
+        kacky.setBalikKaciek(balikFunkcie.balikVymazVrchnychN(balikKaciekTmp, velkostJazera));
 
 
         //najdi obrazky kaciek
         obrazokKaciek = new ImageIcon[7*2];
-        obrazokKaciek[0] =  new ImageIcon("obrazky\\kacka0.png");
-        obrazokKaciek[1] =  new ImageIcon("obrazky\\kacka0n.png");
-        obrazokKaciek[2] =  new ImageIcon("obrazky\\kacka1.png");
-        obrazokKaciek[3] =  new ImageIcon("obrazky\\kacka1n.png");
-        obrazokKaciek[4] =  new ImageIcon("obrazky\\kacka2.png");
-        obrazokKaciek[5] =  new ImageIcon("obrazky\\kacka2n.png");
-        obrazokKaciek[6] =  new ImageIcon("obrazky\\kacka3.png");
-        obrazokKaciek[7] =  new ImageIcon("obrazky\\kacka3n.png");
-        obrazokKaciek[8] =  new ImageIcon("obrazky\\kacka4.png");
-        obrazokKaciek[9] =  new ImageIcon("obrazky\\kacka4n.png");
-        obrazokKaciek[10] =  new ImageIcon("obrazky\\kacka5.png");
-        obrazokKaciek[11] =  new ImageIcon("obrazky\\kacka5n.png");
-        obrazokKaciek[12] =  new ImageIcon("obrazky\\kacka6.png");
-        obrazokKaciek[13] =  new ImageIcon("obrazky\\kacka6n.png");
+        obrazokKaciek[0] =  new ImageIcon("src/main/java/sk/stuba/fei/uim/oop/obrazky/kacka0.png");
+        obrazokKaciek[1] =  new ImageIcon("src/main/java/sk/stuba/fei/uim/oop/obrazky/kacka0n.png");
+        obrazokKaciek[2] =  new ImageIcon("src/main/java/sk/stuba/fei/uim/oop/obrazky/kacka1.png");
+        obrazokKaciek[3] =  new ImageIcon("src/main/java/sk/stuba/fei/uim/oop/obrazky/kacka1n.png");
+        obrazokKaciek[4] =  new ImageIcon("src/main/java/sk/stuba/fei/uim/oop/obrazky/kacka2.png");
+        obrazokKaciek[5] =  new ImageIcon("src/main/java/sk/stuba/fei/uim/oop/obrazky/kacka2n.png");
+        obrazokKaciek[6] =  new ImageIcon("src/main/java/sk/stuba/fei/uim/oop/obrazky/kacka3.png");
+        obrazokKaciek[7] =  new ImageIcon("src/main/java/sk/stuba/fei/uim/oop/obrazky/kacka3n.png");
+        obrazokKaciek[8] =  new ImageIcon("src/main/java/sk/stuba/fei/uim/oop/obrazky/kacka4.png");
+        obrazokKaciek[9] =  new ImageIcon("src/main/java/sk/stuba/fei/uim/oop/obrazky/kacka4n.png");
+        obrazokKaciek[10] =  new ImageIcon("src/main/java/sk/stuba/fei/uim/oop/obrazky/kacka5.png");
+        obrazokKaciek[11] =  new ImageIcon("src/main/java/sk/stuba/fei/uim/oop/obrazky/kacka5n.png");
+        obrazokKaciek[12] =  new ImageIcon("src/main/java/sk/stuba/fei/uim/oop/obrazky/kacka6.png");
+        obrazokKaciek[13] =  new ImageIcon("src/main/java/sk/stuba/fei/uim/oop/obrazky/kacka6n.png");
 
         //zmen ich velkost
         for (int i = 0; i < obrazokKaciek.length; i++){

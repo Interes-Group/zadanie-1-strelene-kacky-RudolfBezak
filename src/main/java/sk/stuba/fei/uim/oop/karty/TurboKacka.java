@@ -12,15 +12,14 @@ import java.util.concurrent.TimeUnit;
 
 public class TurboKacka extends Karta{
 
-    String meno;
-    ImageIcon obrazok;
-    Image obrazokImage;
+    private final String meno;
+    private final ImageIcon obrazok;
 
     public TurboKacka() {
         this.meno="Turbokacka";
-        obrazok = new ImageIcon("obrazky\\turboKacka.png");
-        this.obrazokImage = obrazok.getImage();
-        this.obrazokImage = obrazokImage.getScaledInstance(10*16,10*24,Image.SCALE_DEFAULT);
+        obrazok = new ImageIcon("src/main/java/sk/stuba/fei/uim/oop/obrazky/turboKacka.png");
+        Image obrazokImage = obrazok.getImage();
+        obrazokImage = obrazokImage.getScaledInstance(10*16,10*24,Image.SCALE_DEFAULT);
         this.obrazok.setImage(obrazokImage);
     }
 

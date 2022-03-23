@@ -4,7 +4,7 @@ import sk.stuba.fei.uim.oop.hra.Hrac;
 import sk.stuba.fei.uim.oop.hra.Jazero;
 import sk.stuba.fei.uim.oop.hra.Kacky;
 import sk.stuba.fei.uim.oop.hra.Obraz;
-import sk.stuba.fei.uim.oop.utility.ZKlavesnice;
+
 
 import javax.swing.*;
 import java.awt.*;
@@ -12,16 +12,15 @@ import java.util.concurrent.TimeUnit;
 
 public class DivokyBill extends Karta {
 
-    ImageIcon obrazok;
-    String meno;
-    Image obrazokImage;
+    private final ImageIcon obrazok;
+    private final String meno;
 
 
     public DivokyBill() {
         this.meno = "DivokyBill";
-        obrazok = new ImageIcon("obrazky\\divokyBill.png");
-        this.obrazokImage = obrazok.getImage();
-        this.obrazokImage = obrazokImage.getScaledInstance(10*16,10*24,Image.SCALE_DEFAULT);
+        obrazok = new ImageIcon("src/main/java/sk/stuba/fei/uim/oop/obrazky/divokyBill.png");
+        Image obrazokImage = obrazok.getImage();
+        obrazokImage = obrazokImage.getScaledInstance(10*16,10*24,Image.SCALE_DEFAULT);
         this.obrazok.setImage(obrazokImage);
     }
 

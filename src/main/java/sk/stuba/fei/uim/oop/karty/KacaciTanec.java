@@ -11,15 +11,14 @@ import java.awt.*;
 
 public class KacaciTanec extends Karta{
 
-    String meno;
-    ImageIcon obrazok;
-    Image obrazokImage;
+    private final String meno;
+    private final ImageIcon obrazok;
 
     public KacaciTanec() {
         this.meno = "KacaciTanec";
-        obrazok = new ImageIcon("obrazky\\kacaciTanec.png");
-        this.obrazokImage = obrazok.getImage();
-        this.obrazokImage = obrazokImage.getScaledInstance(10*16,10*24,Image.SCALE_DEFAULT);
+        obrazok = new ImageIcon("src/main/java/sk/stuba/fei/uim/oop/obrazky/kacaciTanec.png");
+        Image obrazokImage = obrazok.getImage();
+        obrazokImage = obrazokImage.getScaledInstance(10*16,10*24,Image.SCALE_DEFAULT);
         this.obrazok.setImage(obrazokImage);
     }
 
