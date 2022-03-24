@@ -17,7 +17,6 @@ public class Obraz extends JPanel {
     private final String[] farbyHracov;
     private final JLabel[] farbyHracovLabel;
     private final JLabel hracNaRade;
-    int posledneTlacitko;
     private final JLabel vypis;
     private final Kliknutia[] akcnePocuvace;
 
