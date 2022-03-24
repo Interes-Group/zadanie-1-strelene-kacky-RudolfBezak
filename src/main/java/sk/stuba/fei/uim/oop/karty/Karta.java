@@ -8,7 +8,7 @@ import sk.stuba.fei.uim.oop.hra.Obraz;
 
 import javax.swing.*;
 
-public class Karta {
+abstract public class Karta {
 
     private String meno;
     private ImageIcon obrazok;

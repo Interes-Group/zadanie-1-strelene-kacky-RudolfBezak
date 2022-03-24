@@ -156,7 +156,7 @@ public class Obraz extends JPanel {
         farbyHracov[5] = "Hrac 6 je fialovy";
 
         for (int i = 0; i < pocetHracov;i++) {
-            farbyHracovLabel[i].setText((farbyHracov[i])+" a ma "+(hraci[i].getZivot())+" kaciek");
+            farbyHracovLabel[i].setText((farbyHracov[i])+" a ma "+(hraci[i].getZivot())+" kacice");
             farbyHracovLabel[i].setBounds(10, 490+i*30, 300, 30);
             this.okno.add(farbyHracovLabel[i]);
             //okno.validate();
