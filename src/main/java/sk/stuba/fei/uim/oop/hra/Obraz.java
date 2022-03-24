@@ -111,8 +111,8 @@ public class Obraz extends JPanel {
         hracNaRade.setBounds(370,280,16*10,10*24);
         okno.add(hracNaRade);
 
-        vypis = new JLabel();
-        vypis.setBounds(950, 330, 10 * 16, 10 * 24);
+        vypis = new JLabel("klikni na kartu hore");
+        vypis.setBounds(950, 330, 300, 10 * 24);
         okno.add(vypis);
 
 
