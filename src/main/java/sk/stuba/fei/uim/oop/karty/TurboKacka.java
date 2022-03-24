@@ -59,11 +59,7 @@ public class TurboKacka extends Karta{
         obraz.setVypis("ktora kacka je turbo?");
         while (!ukazujemNaKacku){
             indexKamUkazujem = obraz.getPosledneTlacitko();
-            try {
-                TimeUnit.MILLISECONDS.sleep(100);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
+
             //zisti ci je dobre cislo
             if (indexKamUkazujem > 0 && indexKamUkazujem < 7){
                 indexKamUkazujem--;

@@ -46,7 +46,7 @@ public class Vystrel extends Karta{
     @Override
     public boolean zahrajKartu(Jazero jazero, Kacky balikKaciek, Hrac[] hrac, Obraz obraz){
         if (!(viemZahrat(jazero, balikKaciek))){
-            System.out.println("tato karta sa neda zahrat :(");
+            //System.out.println("tato karta sa neda zahrat :(");
             return false;
         }
 

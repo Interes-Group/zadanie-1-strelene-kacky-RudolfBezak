@@ -36,11 +36,7 @@ public class DivokyBill extends Karta {
         obraz.setVypis("kam streli divoky Bill?");
         while(!zahrana){
             miestoStrelby = obraz.getPosledneTlacitko();
-            try {
-                TimeUnit.MILLISECONDS.sleep(100);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
+
             if (miestoStrelby < 7 && miestoStrelby > 0){
                 //zaspis ze sme ju zahrali
                 miestoStrelby--;

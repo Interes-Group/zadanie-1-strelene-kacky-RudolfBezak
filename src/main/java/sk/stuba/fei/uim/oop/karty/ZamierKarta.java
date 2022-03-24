@@ -46,7 +46,7 @@ public class ZamierKarta extends Karta {
     public boolean zahrajKartu(Jazero jazero, Kacky balikKaciek, Hrac[] hrac, Obraz obraz) {
         //pozri ci exsituje miesto na ktore nebolo namierené
         if (!viemZahrat(jazero, balikKaciek)) {
-            System.out.println("tato karta sa nedá zahrat :(");
+            //System.out.println("tato karta sa nedá zahrat :(");
             return false;
         }
         //ak viem zahrat tak karta vykona:
@@ -60,11 +60,7 @@ public class ZamierKarta extends Karta {
         obraz.setVypis("kam namieris?");
         while (!zamierilSom) {
             int miestoKamChcemZamierit = obraz.getPosledneTlacitko();
-            try {
-                TimeUnit.MILLISECONDS.sleep(100);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
+
             //pozri ci je cislo od 0-5
             if (miestoKamChcemZamierit < 7 && miestoKamChcemZamierit > 0) {
                 miestoKamChcemZamierit--;

@@ -15,12 +15,8 @@ public class StreleneKackyHra {
         //zisti kolko hracov
         int pocetHracov = 0;
         while (!(pocetHracov > 1 && pocetHracov < 7)) {
-            //bez sleepu mi to nechcelo brat tie tlacitka
-            try {
-                TimeUnit.MILLISECONDS.sleep(100);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
+
+
             pocetHracov = obraz.getPosledneTlacitko();
 
         }
@@ -108,11 +104,8 @@ public class StreleneKackyHra {
                         obraz.setVypis("Ktoru kartu zahras?");
                         while (!jeOdJednaPoDva) {
                             ktoruKartuZahra = obraz.getPosledneTlacitko();
-                            try {
-                                TimeUnit.MILLISECONDS.sleep(100);
-                            } catch (InterruptedException e) {
-                                e.printStackTrace();
-                            }
+
+
                             //zisti ci je od 0-2
                             if (ktoruKartuZahra > 6 && ktoruKartuZahra < 10){
                                 jeOdJednaPoDva = true;
@@ -129,11 +122,7 @@ public class StreleneKackyHra {
                             obraz.setVypis("vyber inu");
                             while (!jeOdJednaPoDva) {
                                 ktoruKartuZahra = obraz.getPosledneTlacitko();
-                                try {
-                                    TimeUnit.MILLISECONDS.sleep(100);
-                                } catch (InterruptedException e) {
-                                    e.printStackTrace();
-                                }
+
                                 if (ktoruKartuZahra > 6 && ktoruKartuZahra < 10){
                                     jeOdJednaPoDva = true;
                                     ktoruKartuZahra -= 7;
@@ -152,11 +141,6 @@ public class StreleneKackyHra {
                     obraz.setVypis("zahod kartu");
                     while(!jeOdJednaPoDva){
                         ktoruKartuZahra = obraz.getPosledneTlacitko();
-                        try {
-                            TimeUnit.MILLISECONDS.sleep(100);
-                        } catch (InterruptedException e) {
-                            e.printStackTrace();
-                        }
                         //zisti ci je od 0-2
                         if (ktoruKartuZahra > 6 && ktoruKartuZahra < 10){
                             jeOdJednaPoDva = true;
@@ -198,6 +182,7 @@ public class StreleneKackyHra {
             //kontrola vitaza
             int vitaz = skontrolujVitaza(hraci);
             if (vitaz != 0){
+                vykresli(hraci,jazero,balikKaciek,pocetHracov,hracNaTahu,obraz);
                 return vitaz;
             }
         }
